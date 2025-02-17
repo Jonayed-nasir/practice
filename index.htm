@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ডাইনামিক আইকন শেয়ারিং ওয়েবসাইট</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+        }
+        h1 {
+            margin: 0;
+        }
+        .icon-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .icon-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            
+            
+        }
+        .icon-card:hover {
+            transform: scale(1.05);
+            opacity: 0.8;
+            filter: blur(1);
+
+        }
+        .icon-card img {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 10px;
+        }
+        .icon-card button {
+            padding: 5px 10px;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .copy-btn {
+            background-color: #28a745;
+            color: white;
+        }
+        .download-btn {
+            background-color: #007bff;
+            color: white;
+        }
+        button:hover {
+            opacity: 0.9;
+            filter: blur(1px);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>আমার ওয়েবসাইট থেকে আইকন নিন</h1>
+    </header>
+    <div class="icon-container" id="icon-container">
+        <!-- আইকন ডাইনামিকভাবে এখানে যোগ করা হবে -->
+    </div>
+
+    <script>
+        // আইকনের ডেটা
+        const icons = [
+            { name: "Facebook", image: "https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg", link: "https://www.facebook.com" },
+            { name: "Twitter", image: "https://upload.wikimedia.org/wikipedia/en/6/60/Twitter_Logo_as_of_2021.svg", link: "https://www.twitter.com" },
+            { name: "LinkedIn", image: "https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png", link: "https://www.linkedin.com" },
+            { name: "Instagram", image: "https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png", link: "https://www.instagram.com" },
+            { name: "YouTube", image: "img/add-friends.png", link: "https://www.youtube.com" },
+            { name: "YouTube", image: "https://cdn-icons-png.flaticon.com/128/3917/3917033.png", link: "https://www.Home.com" },
+            { name: "YouTube", image: "https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png", link: "https://www.youtube.com" },
+            { name: "YouTube", image: "https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png", link: "https://www.youtube.com" }
+
+        ];
+
+        const iconContainer = document.getElementById('icon-container');
+
+        // আইকনগুলো দেখানোর ফাংশন
+        function displayIcons() {
+            icons.forEach(icon => {
+                const iconCard = document.createElement('div');
+                iconCard.className = 'icon-card';
+
+                iconCard.innerHTML = `
+                    <img src="${icon.image}" alt="${icon.name}">
+                    <h3>${icon.name}</h3>
+                    <button class="copy-btn" onclick="copyLink('${icon.link}')">কপি লিঙ্ক</button>
+                    <a href="${icon.image}" download="${icon.name}.svg">
+                        <button class="download-btn">ডাউনলোড</button>
+                    </a>
+                `;
+                iconContainer.appendChild(iconCard);
+            });
+        }
+
+        // কপি লিঙ্ক ফাংশন
+        function copyLink(link) {
+            navigator.clipboard.writeText(link).then(() => {
+                alert('লিঙ্ক কপি করা হয়েছে: ' + link);
+            }).catch(err => {
+                alert('কপি করতে ব্যর্থ হয়েছে!');
+            });
+        }
+
+        // প্রথমবার লোড করার সময় আইকন দেখানো
+        displayIcons();
+    </script>
+</body>
+</html>
